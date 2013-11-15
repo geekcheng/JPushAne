@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="initLib(event)" title="JPush Ane Test Demo">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.example.aslib.AndroidLib;
+			import com.example.aslib.MyEvent;
+			
+			import mx.events.FlexEvent;
+
+			public var ext:AndroidLib = null;
+			
+			protected function initLib(event:FlexEvent):void
+			{
+				initial();
+				
+			}
+			
+			protected function initial():void{
+				ext = new AndroidLib();
+				//添加监听事件
+				ext.addEventListener("onNotify",notifyHandler);
+				ext.addEventListener("onMsg",msgHandler);
+				//初始化广播接收器 和 极光推送
+				ext.regrecv();
+				ext.initjpush();
+			}
+			
+			protected function btn_clickHandler(event:MouseEvent):void
+			{
+					ext.showToast("hello world");
+			}
+			
+			protected function alias_clickHandler(event:MouseEvent):void
+			{
+				if(!ext){
+					initial();
+				}
+				ext.setAlias("alias");
+			}
+
+			protected function tags_clickHandler(event:MouseEvent):void
+			{
+				if(!ext){
+					initial();
+				}
+				var tags:Array = new Array("tag1","tag2");
+				trace("tags:"+tags);
+				ext.setTags(tags);
+			}
+			
+			protected function notifyHandler(event:MyEvent):void
+			{
+				var alert:String = notify.text.toString();
+				alert+=("\n"+(event.data));
+				notify.text = alert;
+				
+			}
+
+			protected function msgHandler(event:MyEvent):void
+			{
+				var msg:String = message.text.toString();
+				msg+=("\n"+(event.data));
+				message.text = msg;
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:layout>
+		<s:VerticalLayout
+			
+			/>
+	</s:layout>
+	<s:Button
+		id="btn"
+		label="Hello World"
+		click="btn_clickHandler(event)"
+		/>
+	<s:Button
+		id="alias"
+		label="Set Default Alias:(alias)"
+		click="alias_clickHandler(event)"
+		/>
+	<s:Button
+		id="tag"
+		label="Set Default Tags:(tag1,tag2)"
+		click="tags_clickHandler(event)"
+		/>
+	<s:Label
+		id="notify"
+		text="recv notification:"
+		/>
+	<s:Label
+		id="message"
+		text="recv msg:"
+		/>
+	
+</s:View>
