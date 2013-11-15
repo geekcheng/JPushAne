@@ -1,0 +1,12 @@
+<extension xmlns="http://ns.adobe.com/air/extension/3.1">
+	  <id>com.example.myextension</id>
+	  <versionNumber>1</versionNumber>
+	  <platforms>
+		<platform name="Android-ARM">
+	      <applicationDeployment>
+	        <nativeLibrary>nativelib.jar</nativeLibrary>
+	        <initializer>com.example.anenativelib.NativeExtension</initializer>
+	      </applicationDeployment>
+	    </platform>
+	  </platforms>
+</extension>
