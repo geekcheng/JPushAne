@@ -11,7 +11,7 @@ JPushAne
 
 5.app.xml的配置，修改Your_Package_Name 和 Your_Appkey
 
-进图app.xml，在下面的节点下添加``<application></application>``标签
+进入app.xml，在下面的节点下添加``<application></application>``标签
 
 	<android>
         <colorDepth>16bit</colorDepth>
