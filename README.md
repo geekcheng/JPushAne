@@ -10,8 +10,15 @@ JPushAne
 4.PackageAneFolder 是用来打包ane的一些配置文件和bat打包脚本，由于ane不支持多个jar包，所以jarpackage有用来合并第三方jar包的bat脚本（jpush的jar包就是第三方jar包）
 
 5.app.xml的配置，修改Your_Package_Name 和 Your_Appkey
+
+进图app.xml，在下面的节点下添加``<application></application>``标签
+
+	<android>
+        <colorDepth>16bit</colorDepth>
+        <manifestAdditions><![CDATA[
+			<manifest android:installLocation="auto">
 	
- (1)
+ (1)编辑``<application></application>``标签的内容
 
 	      <application>
 				<service
